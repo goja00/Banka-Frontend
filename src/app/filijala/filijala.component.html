@@ -1,0 +1,60 @@
+<mat-toolbar color="primary" class="first-color">
+    <span class="title-center">Filijala</span>
+  </mat-toolbar>
+  
+  <div class="container mat-elevation-z8">
+  
+<mat-form-field> 
+ <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Pretražite filijale"> 
+ </mat-form-field>  
+  
+    <mat-table [dataSource]="dataSource" class="mat-cell third-color" matSort>
+  
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="adresa">
+        <mat-header-cell *matHeaderCellDef>Adresa</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.adresa}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="broj_pultova">
+        <mat-header-cell *matHeaderCellDef>Broj pultova</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.broj_pultova}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="posedujeSef" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Poseduje sefa</mat-header-cell>
+        <mat-cell  *matCellDef="let row">{{row.posedujeSef?'Da':'Ne'}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="banka">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Banka</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.banka.naziv}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" (click)="openDialog(1,0,'',0,true,banka1)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.adresa,row.broj_pultova,row.posedujeSef,row.banka)">
+            <mat-icon arial label="Edit">edit</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.adresa,row.broj_pultova,row.posedujeSef,row.banka)">
+            <mat-icon arial label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"> </mat-header-row>
+      <mat-row style="cursor: default" *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+  
+    <mat-paginator class='third-color'[pageSize]="10" [pageSizeOptions]="[5,10,20]" > </mat-paginator>
+  
+  </div>

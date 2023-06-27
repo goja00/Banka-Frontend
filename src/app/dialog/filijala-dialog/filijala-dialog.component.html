@@ -1,0 +1,41 @@
+<div class="container">
+    <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje filijale</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Izmena filijale</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Brisanje filijale</h3>
+    <form class="mat-dialog-content" #formControl="ngForm">
+      <div >
+        <mat-form-field>
+          <input matInput  placeholder="Adresa" [(ngModel)]="filijala.adresa" name="adresa" [disabled] = "flag == 3" required>
+        </mat-form-field>
+      </div>
+      <div >
+        <mat-form-field>
+          <input matInput placeholder="Broj pultova" [(ngModel)]="filijala.broj_pultova" name="broj_pultova" [disabled] = "flag == 3" required>
+     </mat-form-field> 
+    </div>
+      <div >
+          <mat-checkbox placeholder="Poseduje sefa" [(ngModel)]="filijala.posedujeSef" name="posedujeSef" [disabled] = "flag == 3" required>Poseduje sefa</mat-checkbox>
+      </div>
+      <div >
+        <mat-form-field>
+          <mat-select [(ngModel)]="filijala.banka" placeholder="Banka" name="banka" [compareWith]="compareTo" [disabled]="flag == 3">
+            <mat-option *ngFor="let banka of bankas" [value]="banka">
+              {{ banka.naziv }}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()">
+          Dodaj
+        </button>
+        <button mat-button *ngIf="flag == 2" type="submit" [mat-dialog-close]="1" (click)="update()">
+          Sačuvaj
+        </button>
+        <button mat-button *ngIf="flag == 3" type="submit" [mat-dialog-close]="1" (click)="delete()">
+          Obriši
+        </button>
+        <button mat-button (click)="cancel()">Poništi</button>
+        </div>
+    </form>
+  </div>

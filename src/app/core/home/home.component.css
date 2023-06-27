@@ -1,0 +1,32 @@
+.test_box i {
+    font-size: 17px;
+    line-height: 28px;
+    text-align: left;
+    display: block;
+}
+.test_box p {
+    font-size: 17px;
+    line-height: 28px;
+    color: #525251;
+    text-align: left;
+    padding-top: 20px;
+}
+.test_box1 figure {
+    margin: 0;
+}
+.test_box1 figure img {
+    max-width: 206px;
+    border-radius: 200px;
+    border: #12153c solid 6px;
+}
+.test_box1 h4 {
+    font-size: 20px;
+    color: #12153c;
+    line-height: 18px;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0;
+    padding-top: 15px;
+}
